@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Currículo Interativo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.jpg">
+</head>
+
+<body>
+    <!-- Guia de instruções -->
+    <div id="guia">
+        <h3>Como jogar</h3>
+        <p><strong>PC:</strong> Use W A S D ou as setas do teclado</p>
+        <p>Movimente o personagem pelo mapa</p>
+        <p>Vá até os tópicos para visualizar as informações</p>
+    </div>
+
+    <!-- Personagem -->
+    <div id="personagem">
+        <img id="imagem-usuario" src="usuario.gif" alt="Personagem">
+        </div>
+
+    <!-- Gramas -->
+    <p>
+        <img id="g1" src="grama.jpg">
+        <img id="g2" src="grama.jpg">
+        <img id="g3" src="gramaL.jpg">
+        <img id="g4" src="gramaL.jpg">
+        <img id="g5" src="gramaL.jpg">
+        <img id="g6" src="grama.jpg">
+        <img id="g7" src="grama.jpg">
+        <img id="g8" src="gramaL.jpg">
+        <img id="g9" src="gramaL.jpg">
+        <img id="g10" src="gramaL.jpg">
+        <img id="g11" src="gramaL.jpg">
+        <img id="g12" src="gramaL.jpg">
+        <img id="g13" src="gramaLe.jpg">
+        <img id="g14" src="gramaLe.jpg">
+        <img id="g15" src="gramaLe.jpg">
+        <img id="g16" src="gramaLe.jpg">
+        <img id="g17" src="gramaLe.jpg">
+        <img id="g18" src="gramaLe.jpg">
+        <img id="g19" src="grama.jpg">
+        <img id="g20" src="gramaLe.jpg">
+        <img id="g21" src="gramaLe.jpg">
+        <!-- Pedras -->
+        <img id="p1" src="pedra.jpg">
+        <img id="p2" src="pedra.jpg">
+        <img id="p3" src="pedra.jpg">
+        <img id="p4" src="pedra.jpg">
+        <img id="p5" src="pedra.jpg">
+    </p>
+
+    <!-- Arvores -->
+    <img id="a1" src="arvore.gif">
+    <img id="a2" src="arvore.gif">
+    <img id="a3" src="arvore.gif">
+    <img id="a4" src="arvore.gif">
+    <img id="a5" src="arvore.gif">
+    <img id="a6" src="arvore.gif">
+    <img id="a7" src="arvore.gif">
+    <img id="a8" src="arvore.gif">
+    <img id="a9" src="arvore.gif">
+    <img id="a10" src="arvore.gif">
+    <img id="a11" src="arvore.gif">
+    <img id="a12" src="arvore.gif">
+    <img id="a13" src="arvore.gif">
+
+    <!-- Tópicos do mapa -->
+    <div id="zona-dados" class="topico posicao-dados">Dados & Objetivo</div>
+    <div id="zona-formacao" class="topico posicao-formacao">Formação & Conhecimentos</div>
+    <div id="zona-experiencia" class="topico posicao-experiencia">Experiência & Habilidades</div>
+    <div id="zona-redes" class="topico posicao-redes">Redes Sociais</div>
+    <div id="zona-carta" class="topico posicao-carta">Carta de Apresentação</div>
+
+    <!-- Caixa de informações -->
+    <div id="caixa-info">
+        <div id="conteudo-info"></div>
+    </div>
+
+    <!-- Imagem de comemoração -->
+    <img src="comemoracao.gif" alt="Comemoração" id="comemoracao">
+
+    <!-- POPUP FINAL -->
+    <div id="popup-parabens">
+        <p>Parabéns!!! Você verificou todos os tópicos disponíveis.</p>
+        <p> Agradeço sua presença e espero que tenha gostado, fico à sua disposição.</p>
+    </div>
+
+    <!-- MINI-MAPA (adicionado) -->
+    <canvas id="minimap" width="180" height="180" aria-label="Mini mapa"></canvas>
+
+    <!-- BARRA DE PROGRESSO (adicionada) -->
+    <div id="progress-wrap" aria-label="Progresso de tópicos visitados">
+        <div id="progress-header">
+        <span id="progress-title">Progresso</span>
+        <span id="progress-percent">0%</span>
+    </div>
+    <div id="progress-bar">
+        <div id="progress-fill"></div>
+    </div>
+    </div>
+
+    <footer>
+        Desenvolvido por Cauê Ribeiro Ferreira
+    </footer>
+
+    <script src="game.js"></script>
+</body>
+</html>

@@ -268,12 +268,6 @@ footer {
     z-index: 55;
     backdrop-filter: blur(2px);
 }
-/* img progresso
-#barraP{
-    position: absolute;
-    left: 1900px;
-    width: 5%;
-} */
 
 #progress-header {
     display: flex;

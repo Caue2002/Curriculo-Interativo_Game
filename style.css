@@ -272,7 +272,7 @@ footer {
 
 /* img progresso */
 #barraP{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 85%;
     width: 5%;

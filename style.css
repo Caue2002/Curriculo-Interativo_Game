@@ -30,8 +30,7 @@ body {
 
 #imgGuia {
     position: absolute;
-    top: 0;
-    left: 9%;
+    left: 220px;
     width: 100px;
 }
 
@@ -55,21 +54,21 @@ body {
     position: absolute;
     left: 5%;
     top: 40%;
-    width: 7%;
+    width: 110px;
     transition: transform 0.15s ease;
 }
 #b2{
     position: absolute;
     left: 3%;
     top: 50%;
-    width: 7%;
+    width: 110px;
     transition: transform 0.15s ease;
 }
 #aranha{
     position: absolute;
-    left: 8%;
-    top: 48%;
-    width: 12%;
+    left: 7%;
+    top: 45%;
+    width: 210px;
     transition: transform 0.15s ease;
 }
 

@@ -29,7 +29,7 @@ body {
 }
 
 #imgGuia {
-    position: absolute;
+    position: fixed;
     left: 220px;
     width: 100px;
 }
@@ -51,25 +51,22 @@ body {
 
 /* Personagens matando aranha */
 #b1{
-    position: absolute;
+    position: fixed;
     left: 5%;
     top: 40%;
     width: 110px;
-    transition: transform 0.15s ease;
 }
 #b2{
-    position: absolute;
+    position: fixed;
     left: 3%;
     top: 50%;
     width: 110px;
-    transition: transform 0.15s ease;
 }
 #aranha{
-    position: absolute;
+    position: fixed;
     left: 7%;
     top: 45%;
     width: 210px;
-    transition: transform 0.15s ease;
 }
 
 /* Tópicos do mapa */

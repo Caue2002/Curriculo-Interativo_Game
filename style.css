@@ -28,6 +28,13 @@ body {
     z-index: 10;
 }
 
+#imgGuia {
+    position: absolute;
+    top: 0;
+    left: 9%;
+    width: 100px;
+}
+
 /* Personagem */
 #personagem {
     position: absolute;
@@ -40,6 +47,29 @@ body {
 /* Imagem do usuário */
 #imagem-usuario {
     width: 110px;
+    transition: transform 0.15s ease;
+}
+
+/* Personagens matando aranha */
+#b1{
+    position: absolute;
+    left: 5%;
+    top: 40%;
+    width: 7%;
+    transition: transform 0.15s ease;
+}
+#b2{
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    width: 7%;
+    transition: transform 0.15s ease;
+}
+#aranha{
+    position: absolute;
+    left: 8%;
+    top: 48%;
+    width: 12%;
     transition: transform 0.15s ease;
 }
 
@@ -121,7 +151,7 @@ body {
 #comemoracao {
     position: fixed;
     display: none;
-    width: 70px;
+    width: 75px;
     height: 70px;
     border-radius: 50%;
     z-index: 35;
@@ -240,6 +270,13 @@ footer {
     color: #fff;
     z-index: 55;
     backdrop-filter: blur(2px);
+}
+/* img progresso */
+#barraP{
+    position: absolute;
+    top: 0;
+    left: 85%;
+    width: 5%;
 }
 #progress-header {
     display: flex;

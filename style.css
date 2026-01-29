@@ -227,7 +227,7 @@ footer {
     border: 3px solid white;
     border-radius: 18px;
     padding: 30px 40px;
-    font-size: 22px;
+    font-size: 15px;
     color: white;
     display: none;
     z-index: 60;
@@ -235,9 +235,8 @@ footer {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
     max-width: 90%;
 }
-
 #imgPopupFinal{
-    width: 150px;
+    width: 100px;
 }
 
 /* MINI-MAPA */
@@ -269,7 +268,6 @@ footer {
     z-index: 55;
     backdrop-filter: blur(2px);
 }
-
 /* img progresso */
 #barraP{
     position: fixed;

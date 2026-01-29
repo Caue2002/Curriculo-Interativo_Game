@@ -27,7 +27,6 @@ body {
     font-size: 8px;
     z-index: 10;
 }
-
 #imgGuia {
     position: fixed;
     left: 220px;
@@ -42,7 +41,6 @@ body {
     transform: translate(-50%, -50%);
     z-index: 10;
 }
-
 /* Imagem do usuário */
 #imagem-usuario {
     width: 110px;
@@ -55,18 +53,21 @@ body {
     left: 5%;
     top: 40%;
     width: 110px;
+    transition: transform 0.15s ease;
 }
 #b2{
     position: fixed;
     left: 3%;
     top: 50%;
     width: 110px;
+    transition: transform 0.15s ease;
 }
 #aranha{
     position: fixed;
     left: 7%;
     top: 45%;
     width: 210px;
+    transition: transform 0.15s ease;
 }
 
 /* Tópicos do mapa */
@@ -106,7 +107,7 @@ body {
 }
 @keyframes glowPulse {
     0%, 100% { transform: scale(0.98); opacity: 0.55; }
-    50%      { transform: scale(1.03); opacity: 0.85; }
+    50% { transform: scale(1.03); opacity: 0.85; }
 }
 
 /* Posições dos tópicos */
@@ -154,7 +155,6 @@ body {
     pointer-events: none;
     animation: pulsar 1.2s infinite;
 }
-
 /* Animação pulsante */
 @keyframes pulsar {
     0% { transform: scale(1); }
@@ -195,14 +195,12 @@ footer {
 #g19{ position:absolute; top:22%; left:30%; width:5%; }
 #g20{ position:absolute; top:16%; left:23%; width:16vh; }
 #g21{ position:absolute; top:16%; left:17%; width:16vh; }
-
 /* Pedras */
 #p1{ position:absolute; top:37%; left:54%; width:5%; }
 #p2{ position:absolute; top:74%; left:54%; width:5%; }
 #p3{ position:absolute; top:79%; left:54%; width:5%; }
 #p4{ position:absolute; top:37%; left:30%; width:5%; }
 #p5{ position:absolute; top:16%; left:30%; width:5%; }
-
 /* Árvores */
 #a1{ position:absolute; top:16%; left:31%; width:10%; }
 #a2{ position:absolute; top:50%; left:39%; width:10%; }
@@ -238,6 +236,10 @@ footer {
     max-width: 90%;
 }
 
+#imgPopupFinal{
+    width: 150px;
+}
+
 /* MINI-MAPA */
 #minimap {
     position: fixed;
@@ -253,7 +255,7 @@ footer {
     pointer-events: none;
 }
 
-/* BARRA DE PROGRESSO  */
+/* BARRA DE PROGRESSO */
 #progress-wrap {
     position: fixed;
     top: 14px;
@@ -267,6 +269,7 @@ footer {
     z-index: 55;
     backdrop-filter: blur(2px);
 }
+
 /* img progresso */
 #barraP{
     position: absolute;
@@ -274,6 +277,7 @@ footer {
     left: 85%;
     width: 5%;
 }
+
 #progress-header {
     display: flex;
     align-items: center;
@@ -282,8 +286,11 @@ footer {
     font-size: 14px;
     margin-bottom: 8px;
 }
+
 #progress-title { letter-spacing: 0.4px; }
+
 #progress-percent { font-variant-numeric: tabular-nums; }
+
 #progress-bar {
     position: relative;
     width: 100%;
@@ -293,6 +300,7 @@ footer {
     overflow: hidden;
     box-shadow: inset 0 0 8px rgba(0,0,0,0.35);
 }
+
 #progress-fill {
     position: absolute;
     left: 0; top: 0;
@@ -311,5 +319,32 @@ footer {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 7; 
+        z-index: 7;
+}
+
+/* POPUP Da aranha  */
+#popup-protecao {
+    position: fixed;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    width: min(100vw, 520px);
+    max-width: 420px;
+        padding: 14px 16px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    font-size: 24px;
+    line-height: 1.35;
+    text-align: center;
+    z-index: 80;
+  /* deixa o popup oculto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 160ms ease;
+    pointer-events: none; /* não bloqueia interações do jogo */
+}
+#popup-protecao.mostrar {
+    opacity: 1;
+    visibility: visible;
 }

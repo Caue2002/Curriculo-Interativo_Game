@@ -14,15 +14,11 @@ const velocidade = 14;
 /* Movimento através do teclado */
 document.addEventListener("keydown", (evento) => {
     let movimentou = false;
-if (evento.key === "ArrowUp" ||
-    evento.key === "w") { posicaoY -= velocidade; movimentou = true; }
-if (evento.key === "ArrowDown" ||
-    evento.key === "s") { posicaoY += velocidade; movimentou = true; }
-if (evento.key === "ArrowLeft" ||
-    evento.key === "a") { posicaoX -= velocidade; imagemUsuario.style.transform = "scaleX(-1)"; movimentou = true; }
-if (evento.key === "ArrowRight" ||
-    evento.key === "d") { posicaoX += velocidade; imagemUsuario.style.transform = "scaleX(1)"; movimentou = true; }
-if (movimentou) atualizarPosicao();
+    if (evento.key === "ArrowUp" || evento.key === "w") { posicaoY -= velocidade; movimentou = true; }
+    if (evento.key === "ArrowDown" || evento.key === "s") { posicaoY += velocidade; movimentou = true; }
+    if (evento.key === "ArrowLeft" || evento.key === "a") { posicaoX -= velocidade; imagemUsuario.style.transform = "scaleX(-1)"; movimentou = true; }
+    if (evento.key === "ArrowRight" || evento.key === "d") { posicaoX += velocidade; imagemUsuario.style.transform = "scaleX(1)"; movimentou = true; }
+    if (movimentou) atualizarPosicao();
 });
 
 /* Atualiza posição*/
@@ -31,11 +27,17 @@ function atualizarPosicao() {
     const alturaTela = window.innerHeight;
     const larguraPersonagem = personagem.offsetWidth;
     const alturaPersonagem = personagem.offsetHeight;
+
     posicaoX = Math.max(0, Math.min(larguraTela - larguraPersonagem, posicaoX));
     posicaoY = Math.max(0, Math.min(alturaTela - alturaPersonagem, posicaoY));
+
     personagem.style.left = posicaoX + "px";
     personagem.style.top = posicaoY + "px";
+
     verificarColisoes();
+
+  // verifica proximidade da aranha e mostra popup no centro da tela
+    verificarProximidadeAranhaCentral(200);
 }
 
 /* Verifica as colizoes */
@@ -46,25 +48,29 @@ function verificarColisoes() {
     popupAberto = verificarZona("zona-experiencia", conteudoExperiencia()) || popupAberto;
     popupAberto = verificarZona("zona-redes", conteudoRedes()) || popupAberto;
     popupAberto = verificarZona("zona-carta", conteudoCarta()) || popupAberto;
-if (!popupAberto) {
-    caixaInfo.style.display = "none";
-    comemoracao.style.display = "none";
-}
+
+    if (!popupAberto) {
+        caixaInfo.style.display = "none";
+        comemoracao.style.display = "none";
+    }
 }
 
 /* Função colisão*/
 function verificarZona(idZona, conteudoHTML) {
-const zona = document.getElementById(idZona);
-const areaZona = zona.getBoundingClientRect();
-const areaPersonagem = personagem.getBoundingClientRect();
-const colidiu =
+    const zona = document.getElementById(idZona);
+    const areaZona = zona.getBoundingClientRect();
+    const areaPersonagem = personagem.getBoundingClientRect();
+
+    const colidiu =
     areaPersonagem.right > areaZona.left &&
     areaPersonagem.left < areaZona.right &&
     areaPersonagem.bottom > areaZona.top &&
     areaPersonagem.top < areaZona.bottom;
-if (colidiu) {
+
+    if (colidiu) {
     caixaInfo.style.display = "block";
     conteudoInfo.innerHTML = conteudoHTML;
+
     // Posiciona a comemoração acima do popup
     const caixaRect = caixaInfo.getBoundingClientRect();
     comemoracao.style.left = (caixaRect.left + caixaRect.width - 40) + "px";
@@ -72,7 +78,7 @@ if (colidiu) {
     comemoracao.style.display = "block";
     return true;
 }
-return false;
+    return false;
 }
 
 /* Informações dos popups */
@@ -155,17 +161,17 @@ const topicosVisitados = {
 const verificarZonaOriginal = verificarZona;
 verificarZona = function (idZona, conteudoHTML) {
     const resultado = verificarZonaOriginal(idZona, conteudoHTML);
-    if (resultado) {
+        if (resultado) {
     topicosVisitados[idZona] = true;
     verificarPopupParabens();
 }
-return resultado;
+    return resultado;
 };
 
 /* Exibe */
 function verificarPopupParabens() {
     const todosVisitados = Object.values(topicosVisitados).every(valor => valor);
-    if (todosVisitados && popupParabens.style.display !== "block") {
+        if (todosVisitados && popupParabens.style.display !== "block") {
     popupParabens.style.display = "block";
     setTimeout(() => {
         popupParabens.style.display = "none";
@@ -173,190 +179,185 @@ function verificarPopupParabens() {
 }
 }
 
-// MINI-MAPA
+/* MINI-MAPA */
 (function () {
-const minimap = document.getElementById('minimap');
-if (!minimap) return;
+    const minimap = document.getElementById('minimap');
+        if (!minimap) return;
+    const ctx = minimap.getContext('2d');
 
-const ctx = minimap.getContext('2d');
-
-function ajustarParaDPR() {
-    const dpr = window.devicePixelRatio || 1;
-    const rect = minimap.getBoundingClientRect();
-    const cssW = Math.max(1, rect.width);
-    const cssH = Math.max(1, rect.height);
-    minimap.width = Math.round(cssW * dpr);
-    minimap.height = Math.round(cssH * dpr);
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
+    function ajustarParaDPR() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = minimap.getBoundingClientRect();
+        const cssW = Math.max(1, rect.width);
+        const cssH = Math.max(1, rect.height);
+        minimap.width = Math.round(cssW * dpr);
+        minimap.height = Math.round(cssH * dpr);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
 }
 
-function desenharMinimap() {
-    const rect = minimap.getBoundingClientRect();
-    const mmW = rect.width;
-    const mmH = rect.height;
+    function desenharMinimap() {
+        const rect = minimap.getBoundingClientRect();
+        const mmW = rect.width;
+        const mmH = rect.height;
+        ctx.clearRect(0, 0, mmW, mmH);
 
-    ctx.clearRect(0, 0, mmW, mmH);
+        const worldW = window.innerWidth;
+        const worldH = window.innerHeight;
 
-    const worldW = window.innerWidth;
-    const worldH = window.innerHeight;
-
-    // Zonas (tópicos)
+    // topicos
     document.querySelectorAll('.topico').forEach((z) => {
-    const r = z.getBoundingClientRect();
-    const x = (r.left / worldW) * mmW;
-    const y = (r.top / worldH) * mmH;
-    const w = (r.width / worldW) * mmW;
-    const h = (r.height / worldH) * mmH;
+        const r = z.getBoundingClientRect();
+        const x = (r.left / worldW) * mmW;
+        const y = (r.top / worldH) * mmH;
+        const w = (r.width / worldW) * mmW;
+        const h = (r.height / worldH) * mmH;
         ctx.fillStyle = 'rgba(255,255,255,0.18)';
         ctx.strokeStyle = 'rgba(255,255,255,0.55)';
         ctx.lineWidth = 1;
         ctx.fillRect(x, y, w, h);
         ctx.strokeRect(x, y, w, h);
-    });
+});
 
     // Personagem
     const pr = personagem.getBoundingClientRect();
     const px = ((pr.left + pr.width / 2) / worldW) * mmW;
     const py = ((pr.top + pr.height / 2) / worldH) * mmH;
-
-    ctx.fillStyle = '#ff5252';
-    ctx.beginPath();
-    ctx.arc(px, py, 4, 0, Math.PI * 2);
-    ctx.fill();
+        ctx.fillStyle = '#ff5252';
+        ctx.beginPath();
+        ctx.arc(px, py, 4, 0, Math.PI * 2);
+        ctx.fill();
 
     // Moldura
-    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(0.5, 0.5, mmW - 1, mmH - 1);
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(0.5, 0.5, mmW - 1, mmH - 1);
 }
 
 function render() { desenharMinimap(); }
-    ajustarParaDPR();
-    render();
-    window.addEventListener('resize', () => { ajustarParaDPR(); render(); });
 
-  // Hook não-intrusivo
-const atualizarPosicaoOriginal = atualizarPosicao;
-    atualizarPosicao = function () {
-    atualizarPosicaoOriginal();
-    requestAnimationFrame(render);
-};
+ajustarParaDPR();
+render();
+
+window.addEventListener('resize', () => { ajustarParaDPR(); render(); });
+
+  // Hook 
+    const atualizarPosicaoOriginal = atualizarPosicao;
+        atualizarPosicao = function () {
+        atualizarPosicaoOriginal();
+        requestAnimationFrame(render);
+    };
 })();
 
-
-// BARRA DE PROGRESSO
-
-(function () {
-    const wrap = document.getElementById('progress-wrap');
-    const percentEl = document.getElementById('progress-percent');
-    const fillEl = document.getElementById('progress-fill');
-
-    if (!wrap || !percentEl || !fillEl) return;
+/* BARRA DE PROGRESSO */
+    (function () {
+        const wrap = document.getElementById('progress-wrap');
+        const percentEl = document.getElementById('progress-percent');
+        const fillEl = document.getElementById('progress-fill');
+            if (!wrap || !percentEl || !fillEl) return;
 
     const totalTopicos = () => Object.keys(topicosVisitados || {}).length || 0;
 
-function calcularVisitados() {
-    if (!topicosVisitados) return 0;
-    return Object.values(topicosVisitados).filter(Boolean).length;
+    function calcularVisitados() {
+        if (!topicosVisitados) return 0;
+        return Object.values(topicosVisitados).filter(Boolean).length;
+    }
+
+    function atualizarBarra() {
+        const total = totalTopicos();
+        const visitados = calcularVisitados();
+        const perc = total > 0 ? Math.round((visitados / total) * 100) : 0;
+        percentEl.textContent = perc + '%';
+        fillEl.style.width = perc + '%';
+
+    // Cor dinâmica
+        const g = Math.min(255, Math.round((perc / 100) * 180 + 60));
+        const r = Math.max(80, 240 - Math.round((perc / 100) * 160));
+        fillEl.style.background = `linear-gradient(90deg, rgb(${r},${g-40},80), rgb(${Math.max(60,r-20)},${Math.min(255,g+20)},90))`;
+        fillEl.style.boxShadow = `0 0 12px rgba(${Math.max(60,r-20)},${Math.min(255,g+20)},90,0.45)`;
 }
 
-function atualizarBarra() {
-    const total = totalTopicos();
-    const visitados = calcularVisitados();
-    const perc = total > 0 ? Math.round((visitados / total) * 100) : 0;
+    // Atualiza ao carregar
+    atualizarBarra();
 
-    percentEl.textContent = perc + '%';
-    fillEl.style.width = perc + '%';
-
-    // Cor dinâmica 
-    const g = Math.min(255, Math.round((perc / 100) * 180 + 60));
-    const r = Math.max(80, 240 - Math.round((perc / 100) * 160));
-    fillEl.style.background = `linear-gradient(90deg, rgb(${r},${g-40},80), rgb(${Math.max(60,r-20)},${Math.min(255,g+20)},90))`;
-    fillEl.style.boxShadow = `0 0 12px rgba(${Math.max(60,r-20)},${Math.min(255,g+20)},90,0.45)`;
-}
-
-  // Atualiza ao carregar
-atualizarBarra();
-
-  // Envolve a função verificarZona (sem tocar na anterior)
+    // Envolve a função verificarZona (sem tocar na anterior)
     const verificarZonaAnterior = verificarZona;
-        verificarZona = function (idZona, conteudoHTML) {
+    verificarZona = function (idZona, conteudoHTML) {
     const r = verificarZonaAnterior(idZona, conteudoHTML);
-        if (r) atualizarBarra();
+    if (r) atualizarBarra();
     return r;
 };
 
-window.addEventListener('resize', atualizarBarra);
+    window.addEventListener('resize', atualizarBarra);
 })();
 
+/* EFEITOS NOS TÓPICOS*/
+    (function () {
+        const FX_ZINDEX = 7;
+        let canvas, ctx, dpr;
+        const topics = Array.from(document.querySelectorAll('.topico'));
+            if (!topics.length) return;
 
-//EFEITOS NOS TÓPICOS: brilho aditivo 
-(function () {
-    const FX_ZINDEX = 7;
-    let canvas, ctx, dpr;
-    const topics = Array.from(document.querySelectorAll('.topico'));
-    if (!topics.length) return;
+    // Cria canvas
+    canvas = document.createElement('canvas');
+    canvas.id = 'topic-fx';
+    document.body.appendChild(canvas);
+    ctx = canvas.getContext('2d');
 
-  // Cria canvas
-canvas = document.createElement('canvas');
-canvas.id = 'topic-fx';
-document.body.appendChild(canvas);
-ctx = canvas.getContext('2d');
+    function resize() {
+        dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
 
-function resize() {
-    dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    // Define estilo CSS para cobrir a tela
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    // Define buffer interno em pixels físicos
-    canvas.width = Math.round(window.innerWidth * dpr);
-    canvas.height = Math.round(window.innerHeight * dpr);
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
+        // Define estilo CSS para cobrir a tela
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+
+        // Define buffer interno em pixels físicos
+        canvas.width = Math.round(window.innerWidth * dpr);
+        canvas.height = Math.round(window.innerHeight * dpr);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
 }
+    resize();
 
-resize();
-window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize);
 
-// Partículas por tópico
-const clusters = topics.map((el) => ({
+  // Partículas por tópico
+    const clusters = topics.map((el) => ({
     el,
     // partículas "fumaça": posição relativa ao tópico
     puffs: Array.from({ length: 10 }, () => makePuff())
 }));
 
-function makePuff() {
-    return {
-    x: Math.random(),
-    y: 1 + Math.random() * 0.2,
-    r: 8 + Math.random() * 14,
-    vy: 10 + Math.random() * 18,
-    a: 0.15 + Math.random() * 0.2,
-    vx: (Math.random() - 0.5) * 12
-};
+    function makePuff() {
+        return {
+        x: Math.random(),
+        y: 1 + Math.random() * 0.2,
+        r: 8 + Math.random() * 14,
+        vy: 10 + Math.random() * 18,
+        a: 0.15 + Math.random() * 0.2,
+        vx: (Math.random() - 0.5) * 12
+    };
 }
 
-
-let last = performance.now();
-function tick(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); // segundos (cap 50ms)
-    last = now;
+    let last = performance.now();
+    function tick(now) {
+        const dt = Math.min(0.05, (now - last) / 1000); // segundos (cap 50ms)
+        last = now;
 
     // Limpa cena
     ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
 
     // Desenha por tópico
     clusters.forEach(({ el, puffs }) => {
-        const r = el.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
+    const r = el.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
 
     //Glow aditivo suave
     const glowRadius = Math.max(r.width, r.height) * 0.85;
     const grad = ctx.createRadialGradient(cx, cy, glowRadius * 0.1, cx, cy, glowRadius);
-    const t = (now / 1000) % 2.4; 
+    const t = (now / 1000) % 2.4;
     const pulse = 0.6 + 0.4 * Math.sin(t * Math.PI); // 0.2..1.0
     grad.addColorStop(0, `rgba(255,255,255,${0.14 * pulse})`);
     grad.addColorStop(1, 'rgba(255,255,255,0)');
@@ -368,21 +369,22 @@ function tick(now) {
 
     // ---- Fumacinha subindo ----
     puffs.forEach(p => {
-        // posição absoluta
-        p.y -= (p.vy * dt) / r.height;  // normaliza pela altura do tópico
-        const px = r.left + p.x * r.width + p.vx * (1 - p.y); // leve drift
-        const py = r.top + p.y * r.height;
 
-        // quando sai, recicla
-        if (p.y <= -0.2) {
-            const np = makePuff();
-            np.y = 1 + Math.random() * 0.1;
-            np.x = Math.random();
-            p.x = np.x; p.y = np.y; p.r = np.r; p.vy = np.vy; p.a = np.a; p.vx = np.vx;
-        }
+    // posição absoluta
+    p.y -= (p.vy * dt) / r.height; // normaliza pela altura do tópico
+    const px = r.left + p.x * r.width + p.vx * (1 - p.y); // leve drift
+    const py = r.top + p.y * r.height;
 
-        // desenha puff (círculo muito suave)
-        const radGrad = ctx.createRadialGradient(px, py, 0, px, py, p.r);
+    // quando sai, recicla
+    if (p.y <= -0.2) {
+        const np = makePuff();
+        np.y = 1 + Math.random() * 0.1;
+        np.x = Math.random();
+        p.x = np.x; p.y = np.y; p.r = np.r; p.vy = np.vy; p.a = np.a; p.vx = np.vx;
+    }
+
+    // desenha puff (círculo muito suave)
+    const radGrad = ctx.createRadialGradient(px, py, 0, px, py, p.r);
         radGrad.addColorStop(0, `rgba(255,255,255,${p.a})`);
         radGrad.addColorStop(1, 'rgba(255,255,255,0)');
         ctx.fillStyle = radGrad;
@@ -391,11 +393,47 @@ function tick(now) {
         ctx.fill();
     });
 
-        ctx.globalCompositeOperation = 'source-over';
-    });
-
-    requestAnimationFrame(tick);
-}
+    ctx.globalCompositeOperation = 'source-over';
+});
 
 requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
 })();
+
+/*  POPUP personagem chega perto da aranha. */
+const popupProtecao = document.getElementById("popup-protecao");
+const imagemAranha = document.getElementById("aranha");
+
+/** Retorna o centro */
+function obterCentro(el) {
+    const r = el.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+}
+
+/**
+ * Verifica a proximidade entre o personagem e a aranha.
+ * @param {number} limiarPx - distância em pixels para disparar o popup (padrão 200)
+ */
+function verificarProximidadeAranhaCentral(limiarPx = 200) {
+    if (!popupProtecao || !imagemAranha || !personagem) return;
+
+const cPers = obterCentro(personagem);
+const cAra  = obterCentro(imagemAranha);
+
+const dx = cPers.x - cAra.x;
+const dy = cPers.y - cAra.y;
+const distancia = Math.hypot(dx, dy);
+
+    if (distancia <= limiarPx) {
+    // exibe no centro da tela
+    if (!popupProtecao.classList.contains("mostrar")) {
+        popupProtecao.classList.add("mostrar");
+    }
+} else {
+    popupProtecao.classList.remove("mostrar");
+}
+}
+
+// Chamada inicial para garantir estado correto ao carregar
+verificarProximidadeAranhaCentral(200);

@@ -174,47 +174,47 @@ footer {
 }
 
 /* Gramas */
-#g1{ position:absolute; top:14%; left:54%; width:5%; }
-#g2{ position:absolute; top:22%; left:54%; width:5%; }
-#g3{ position:absolute; top:37%; left:59%; width:16vh; }
-#g4{ position:absolute; top:37%; left:66%; width:16vh; }
-#g5{ position:absolute; top:37%; left:73%; width:16vh; }
-#g6{ position:absolute; top:58%; left:54%; width:5%; }
-#g7{ position:absolute; top:47%; left:54%; width:5%; }
-#g8{ position:absolute; top:74%; left:59%; width:16vh; }
-#g9{ position:absolute; top:74%; left:66%; width:16vh; }
-#g10{ position:absolute; top:74%; left:150vh; width:16vh; }
-#g11{ position:absolute; top:79%; left:103vh; width:16vh; }
-#g12{ position:absolute; top:79%; left:43%; width:16vh; }
-#g13{ position:absolute; top:79%; left:36%; width:16vh; }
-#g14{ position:absolute; top:79%; left:29%; width:16vh; }
-#g15{ position:absolute; top:79%; left:23%; width:16vh; }
-#g16{ position:absolute; top:37%; left:47%; width:16vh; }
-#g17{ position:absolute; top:37%; left:40%; width:16vh; }
-#g18{ position:absolute; top:37%; left:33%; width:16vh; }
-#g19{ position:absolute; top:22%; left:30%; width:5%; }
-#g20{ position:absolute; top:16%; left:23%; width:16vh; }
-#g21{ position:absolute; top:16%; left:17%; width:16vh; }
+#g1{ position:fixed; top:14%; left:54%; width:5%; }
+#g2{ position:fixed; top:22%; left:54%; width:5%; }
+#g3{ position:fixed; top:37%; left:59%; width:16vh; }
+#g4{ position:fixed; top:37%; left:66%; width:16vh; }
+#g5{ position:fixed; top:37%; left:73%; width:16vh; }
+#g6{ position:fixed; top:58%; left:54%; width:5%; }
+#g7{ position:fixed; top:47%; left:54%; width:5%; }
+#g8{ position:fixed; top:74%; left:59%; width:16vh; }
+#g9{ position:fixed; top:74%; left:66%; width:16vh; }
+#g10{ position:fixed; top:74%; left:150vh; width:16vh; }
+#g11{ position:fixed; top:79%; left:103vh; width:16vh; }
+#g12{ position:fixed; top:79%; left:43%; width:16vh; }
+#g13{ position:fixed; top:79%; left:36%; width:16vh; }
+#g14{ position:fixed; top:79%; left:29%; width:16vh; }
+#g15{ position:fixed; top:79%; left:23%; width:16vh; }
+#g16{ position:fixed; top:37%; left:47%; width:16vh; }
+#g17{ position:fixed; top:37%; left:40%; width:16vh; }
+#g18{ position:fixed; top:37%; left:33%; width:16vh; }
+#g19{ position:fixed; top:22%; left:30%; width:5%; }
+#g20{ position:fixed; top:16%; left:23%; width:16vh; }
+#g21{ position:fixed; top:16%; left:17%; width:16vh; }
 /* Pedras */
-#p1{ position:absolute; top:37%; left:54%; width:5%; }
-#p2{ position:absolute; top:74%; left:54%; width:5%; }
-#p3{ position:absolute; top:79%; left:54%; width:5%; }
-#p4{ position:absolute; top:37%; left:30%; width:5%; }
-#p5{ position:absolute; top:16%; left:30%; width:5%; }
+#p1{ position:fixed; top:37%; left:54%; width:5%; }
+#p2{ position:fixed; top:74%; left:54%; width:5%; }
+#p3{ position:fixed; top:79%; left:54%; width:5%; }
+#p4{ position:fixed; top:37%; left:30%; width:5%; }
+#p5{ position:fixed; top:16%; left:30%; width:5%; }
 /* Árvores */
-#a1{ position:absolute; top:16%; left:31%; width:10%; }
-#a2{ position:absolute; top:50%; left:39%; width:10%; }
-#a3{ position:absolute; top:0%; left:20%; width:10%; }
-#a4{ position:absolute; top:61%; left:19%; width:10%; }
-#a5{ position:absolute; top:29%; left:25%; width:10%; }
-#a6{ position:absolute; top:19%; left:48%; width:10%; }
-#a7{ position:absolute; top:29%; left:55%; width:10%; }
-#a8{ position:absolute; top:18%; left:65%; width:10%; }
-#a9{ position:absolute; top:69%; left:45%; width:10%; }
-#a10{ position:absolute; top:55%; left:66%; width:10%; }
-#a11{ position:absolute; top:32%; left:5%; width:10%; }
-#a12{ position:absolute; top:47%; left:83%; width:10%; }
-#a13{ position:absolute; top:12%; left:89%; width:10%; }
+#a1{ position:fixed; top:16%; left:31%; width:10%; }
+#a2{ position:fixed; top:50%; left:39%; width:10%; }
+#a3{ position:fixed; top:0%; left:20%; width:10%; }
+#a4{ position:fixed; top:61%; left:19%; width:10%; }
+#a5{ position:fixed; top:29%; left:25%; width:10%; }
+#a6{ position:fixed; top:19%; left:48%; width:10%; }
+#a7{ position:fixed; top:29%; left:55%; width:10%; }
+#a8{ position:fixed; top:18%; left:65%; width:10%; }
+#a9{ position:fixed; top:69%; left:45%; width:10%; }
+#a10{ position:fixed; top:55%; left:66%; width:10%; }
+#a11{ position:fixed; top:32%; left:5%; width:10%; }
+#a12{ position:fixed; top:47%; left:83%; width:10%; }
+#a13{ position:fixed; top:12%; left:89%; width:10%; }
 
 /* Popup Parabéns */
 #popup-parabens {
